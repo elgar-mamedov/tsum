@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  // TODO: add i18n support
+  // TODO: lazy-loading support
+  // TODO: add short paths support with @app/...
   title = 'tsum';
 }

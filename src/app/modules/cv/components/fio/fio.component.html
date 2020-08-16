@@ -1,1 +1,5 @@
-<p>fio works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>ФИО</mat-label>
+  <input matInput [formControl]="fio" required>
+  <mat-error *ngIf="fio.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
