@@ -1,0 +1,14 @@
+.cv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  .create-btn {
+    margin-bottom: 10px;
+  }
+
+  mat-panel-description{
+    justify-content: flex-end;
+  }
+}

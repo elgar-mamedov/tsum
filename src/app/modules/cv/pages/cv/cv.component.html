@@ -1,1 +1,22 @@
-<p>cv works!!!</p>
+<div class="cv">
+  <h1>CV list</h1>
+  <a mat-raised-button routerLink="/" color="primary" class="create-btn">
+    Create new
+  </a>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let user of users$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{user.firstName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{user.dateOfBirth}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p *ngFor="let key of Object.keys(user)">
+        <b>{{key}}:</b> {{user[key]}}
+      </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

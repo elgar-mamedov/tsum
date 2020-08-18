@@ -1,7 +1,7 @@
-<section class="example-section">
-  <label class="example-margin">Пол:</label>
-  <mat-radio-group [(ngModel)]="gender">
-    <mat-radio-button class="example-margin" value="male">Мужской</mat-radio-button>
-    <mat-radio-button class="example-margin" value="female">Женский</mat-radio-button>
+<section>
+  <label [class.mat-error]="hasError">Пол: <span *ngIf="required">*</span></label>
+  <mat-radio-group [required]="required" [(ngModel)]="value">
+    <mat-radio-button value="male">Мужской</mat-radio-button>
+    <mat-radio-button value="female">Женский</mat-radio-button>
   </mat-radio-group>
 </section>

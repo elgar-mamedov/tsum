@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill" [class.mat-form-field-invalid]="hasError">
+  <mat-label>Семейное положение</mat-label>
+  <mat-select [required]="required" [(ngModel)]="value">
+    <mat-option [value]="materialStatus.MARRIED" *ngIf="isMale">Женат</mat-option>
+    <mat-option [value]="materialStatus.MARRIED" *ngIf="isFeMale">Замужем</mat-option>
+    <mat-option [value]="materialStatus.DIVORCED">В разводе</mat-option>
+    <mat-option [value]="materialStatus.NOT">Нет</mat-option>
+  </mat-select>
+  <mat-hint *ngIf="hasError" [class.mat-error]="hasError">{{errorMsg}}</mat-hint>
+</mat-form-field>

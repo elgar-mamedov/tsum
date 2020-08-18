@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-fio',
-  templateUrl: './fio.component.html',
-  styleUrls: ['./fio.component.scss'],
+  selector: 'app-email',
+  templateUrl: './email.component.html',
+  styleUrls: ['./email.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FioComponent {
+export class EmailComponent {
   // tslint:disable-next-line:variable-name
   private _value: string;
 

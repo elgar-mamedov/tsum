@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-fio',
-  templateUrl: './fio.component.html',
-  styleUrls: ['./fio.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-comment',
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.scss']
 })
-export class FioComponent {
+export class CommentComponent {
   // tslint:disable-next-line:variable-name
   private _value: string;
 

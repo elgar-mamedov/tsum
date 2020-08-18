@@ -1,5 +1,5 @@
 <mat-form-field appearance="fill" [class.mat-form-field-invalid]="hasError">
-  <mat-label>ФИО</mat-label>
-  <input matInput [(ngModel)]="value" [required]="required">
+  <mat-label>Комментарий</mat-label>
+  <textarea matInput [required]="required" [(ngModel)]="value"></textarea>
   <mat-hint *ngIf="hasError" [class.mat-error]="hasError">{{errorMsg}}</mat-hint>
 </mat-form-field>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GenderModel } from '../../../../shared/models';
 
 @Component({
@@ -7,13 +7,30 @@ import { GenderModel } from '../../../../shared/models';
   styleUrls: ['./gender.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GenderComponent implements OnInit {
-  public gender: GenderModel;
+export class GenderComponent {
+  // tslint:disable-next-line:variable-name
+  private _value: GenderModel;
 
-  constructor() {
+  get value(): GenderModel {
+    return this._value;
   }
 
-  ngOnInit(): void {
+  @Input()
+  set value(val: GenderModel) {
+    this._value = val;
+    this.valueChange.emit(this._value);
   }
 
+
+  @Input()
+  required?: boolean;
+
+  @Input()
+  hasError?: boolean;
+
+  @Input()
+  errorMsg?: string;
+
+  @Output()
+  valueChange = new EventEmitter<GenderModel>();
 }
