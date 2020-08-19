@@ -1,67 +1,69 @@
 <div class="cv">
   <h1>Create CV</h1>
-  <div class="cv-fields">
-    <app-fio
-      [value]="getControl(CONTROLS.FIRST_NAME).value"
-      [required]="true"
-      [hasError]="hasError(CONTROLS.FIRST_NAME)"
-      [errorMsg]="getErrorMessage(CONTROLS.FIRST_NAME)"
-      (valueChange)="onModelChange($event, CONTROLS.FIRST_NAME)"
-    ></app-fio>
+  <form [formGroup]="createCvForm" (submit)="onSubmit()">
+    <div class="cv-fields">
+      <app-fio
+        [value]="getControl(CONTROLS.FIRST_NAME).value"
+        [required]="true"
+        [hasError]="hasError(CONTROLS.FIRST_NAME)"
+        [errorMsg]="getErrorMessage(CONTROLS.FIRST_NAME)"
+        (valueChange)="onModelChange($event, CONTROLS.FIRST_NAME)"
+      ></app-fio>
 
-    <app-gender
-      [value]="getControl(CONTROLS.GENDER).value"
-      [required]="true"
-      [hasError]="hasError(CONTROLS.GENDER)"
-      [errorMsg]="getErrorMessage(CONTROLS.GENDER)"
-      (valueChange)="onModelChange($event, CONTROLS.GENDER)"
-    ></app-gender>
+      <app-gender
+        [value]="getControl(CONTROLS.GENDER).value"
+        [required]="true"
+        [hasError]="hasError(CONTROLS.GENDER)"
+        [errorMsg]="getErrorMessage(CONTROLS.GENDER)"
+        (valueChange)="onModelChange($event, CONTROLS.GENDER)"
+      ></app-gender>
 
-    <app-date-of-birth
-      [value]="getControl(CONTROLS.DATE_OF_BIRTH).value"
-      [required]="true"
-      [hasError]="hasError(CONTROLS.DATE_OF_BIRTH)"
-      [errorMsg]="getErrorMessage(CONTROLS.DATE_OF_BIRTH)"
-      (valueChange)="onModelChange($event, CONTROLS.DATE_OF_BIRTH)"
-    ></app-date-of-birth>
+      <app-date-of-birth
+        [value]="getControl(CONTROLS.DATE_OF_BIRTH).value"
+        [required]="true"
+        [hasError]="hasError(CONTROLS.DATE_OF_BIRTH)"
+        [errorMsg]="getErrorMessage(CONTROLS.DATE_OF_BIRTH)"
+        (valueChange)="onModelChange($event, CONTROLS.DATE_OF_BIRTH)"
+      ></app-date-of-birth>
 
-    <app-marital-status
-      *ngIf="isAdult"
-      [gender]="getControl(CONTROLS.GENDER).value"
-      [value]="getControl(CONTROLS.MATERIAL_STATUS).value"
-      [required]="true"
-      [hasError]="hasError(CONTROLS.MATERIAL_STATUS)"
-      [errorMsg]="getErrorMessage(CONTROLS.MATERIAL_STATUS)"
-      (valueChange)="onModelChange($event, CONTROLS.MATERIAL_STATUS)"
-    ></app-marital-status>
+      <app-marital-status
+        *ngIf="isAdult"
+        [gender]="getControl(CONTROLS.GENDER).value"
+        [value]="getControl(CONTROLS.MATERIAL_STATUS).value"
+        [required]="true"
+        [hasError]="hasError(CONTROLS.MATERIAL_STATUS)"
+        [errorMsg]="getErrorMessage(CONTROLS.MATERIAL_STATUS)"
+        (valueChange)="onModelChange($event, CONTROLS.MATERIAL_STATUS)"
+      ></app-marital-status>
 
-    <app-amount-of-children
-      [value]="getControl(CONTROLS.AMOUNT_OF_CHILDREN).value"
-      [hasError]="hasError(CONTROLS.AMOUNT_OF_CHILDREN)"
-      [errorMsg]="getErrorMessage(CONTROLS.AMOUNT_OF_CHILDREN)"
-      (valueChange)="onModelChange($event, CONTROLS.AMOUNT_OF_CHILDREN)"
-    ></app-amount-of-children>
+      <app-amount-of-children
+        [value]="getControl(CONTROLS.AMOUNT_OF_CHILDREN).value"
+        [hasError]="hasError(CONTROLS.AMOUNT_OF_CHILDREN)"
+        [errorMsg]="getErrorMessage(CONTROLS.AMOUNT_OF_CHILDREN)"
+        (valueChange)="onModelChange($event, CONTROLS.AMOUNT_OF_CHILDREN)"
+      ></app-amount-of-children>
 
-    <app-email
-      [value]="getControl(CONTROLS.EMAIL).value"
-      [required]="true"
-      [hasError]="hasError(CONTROLS.EMAIL)"
-      [errorMsg]="getErrorMessage(CONTROLS.EMAIL)"
-      (valueChange)="onModelChange($event, CONTROLS.EMAIL)"
-    ></app-email>
+      <app-email
+        [formControlName]="CONTROLS.EMAIL"
+        [required]="true"
+        [hasError]="hasError(CONTROLS.EMAIL)"
+        [errorMsg]="getErrorMessage(CONTROLS.EMAIL)"
+      ></app-email>
 
-    <app-comment
-      [value]="getControl(CONTROLS.COMMENT).value"
-      [hasError]="hasError(CONTROLS.COMMENT)"
-      [errorMsg]="getErrorMessage(CONTROLS.COMMENT)"
-      (valueChange)="onModelChange($event, CONTROLS.COMMENT)"
-    ></app-comment>
+      <app-comment
+        [value]="getControl(CONTROLS.COMMENT).value"
+        [hasError]="hasError(CONTROLS.COMMENT)"
+        [errorMsg]="getErrorMessage(CONTROLS.COMMENT)"
+        (valueChange)="onModelChange($event, CONTROLS.COMMENT)"
+      ></app-comment>
 
-    <p *ngIf="submitAttempts" [class.mat-error]="submitAttempts">
-      Количество поаыток {{submitAttempts}}/{{maxSubmitAttempts}}
-    </p>
-    <button mat-raised-button color="primary" type="button"
-            [disabled]="disableSubmit"
-            (click)="onSubmit()">Сохранить</button>
-  </div>
+      <p *ngIf="submitAttempts" [class.mat-error]="submitAttempts">
+        Количество поаыток {{submitAttempts}}/{{maxSubmitAttempts}}
+      </p>
+      <button mat-raised-button
+              color="primary" type="submit"
+              [disabled]="disableSubmit">Сохранить
+      </button>
+    </div>
+  </form>
 </div>

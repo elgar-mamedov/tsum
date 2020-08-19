@@ -1,5 +1,5 @@
 <mat-form-field appearance="fill" [class.mat-form-field-invalid]="hasError">
   <mat-label>Email</mat-label>
-  <input matInput [required]="required" [(ngModel)]="value">
+  <input matInput [required]="required" [ngModel]="value" (ngModelChange)="updateValue($event)">
   <mat-hint *ngIf="hasError" [class.mat-error]="hasError">{{errorMsg}}</mat-hint>
 </mat-form-field>

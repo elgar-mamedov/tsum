@@ -1,24 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => EmailComponent),
+    multi: true
+  }]
 })
-export class EmailComponent {
-  // tslint:disable-next-line:variable-name
-  private _value: string;
-
-  get value(): string {
-    return this._value;
-  }
-
+export class EmailComponent implements ControlValueAccessor {
   @Input()
-  set value(val: string) {
-    this._value = val;
-    this.valueChange.emit(this._value);
-  }
+  value: string;
 
   @Input()
   required?: boolean;
@@ -29,6 +25,28 @@ export class EmailComponent {
   @Input()
   errorMsg?: string;
 
-  @Output()
-  valueChange = new EventEmitter<string>();
+  private onChange = (value: string) => {};
+  private onTouched = () => {};
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    //  TODO: implement
+  }
+
+  writeValue(obj: any): void {
+    this.value = obj;
+  }
+
+  updateValue(value: string): void {
+    this.value = value;
+    this.onChange(value);
+    this.onTouched();
+  }
 }
