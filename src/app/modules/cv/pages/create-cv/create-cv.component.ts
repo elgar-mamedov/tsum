@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonService } from '../../../../core/services/common.service';
+import { CYRILLIC_PATTERN, EMAIL_PATTERN } from '../../../../core/services/common.service';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { RxUnsubscribe } from '../../../../core/services/rx-unsubscribe';
 import { UserService } from '../../../../core/services/user.service';
@@ -26,12 +26,12 @@ export class CreateCvComponent extends RxUnsubscribe implements OnInit {
   readonly CONTROLS = Controls;
 
   createCvForm: FormGroup = this.fb.group({
-    [Controls.FIRST_NAME]: ['', [Validators.required, Validators.pattern(CommonService.CYRILLIC_PATTERN)]],
+    [Controls.FIRST_NAME]: ['', [Validators.required, Validators.pattern(CYRILLIC_PATTERN)]],
     [Controls.GENDER]: ['', [Validators.required]],
     [Controls.MATERIAL_STATUS]: [''],
     [Controls.AMOUNT_OF_CHILDREN]: [''],
     [Controls.EMAIL]: ['', [Validators.required, Validators.email]],
-    [Controls.COMMENT]: ['', [Validators.pattern(CommonService.CYRILLIC_PATTERN)]],
+    [Controls.COMMENT]: ['', [Validators.pattern(CYRILLIC_PATTERN)]],
     [Controls.DATE_OF_BIRTH]: ['', [Validators.required]],
   });
   private formSubmitted = false;
@@ -80,7 +80,7 @@ export class CreateCvComponent extends RxUnsubscribe implements OnInit {
   getErrorMessage(name: Controls): string {
     if (this.getControl(name).hasError('required')) {
       return 'Обязательное поле';
-    } else if (this.getControl(name).hasError('required')) {
+    } else if (this.getControl(name).hasError('email')) {
       return 'Неверный email';
     } else if (this.getControl(name).hasError('pattern')) {
       return 'Можно вводить только на русском языке';
