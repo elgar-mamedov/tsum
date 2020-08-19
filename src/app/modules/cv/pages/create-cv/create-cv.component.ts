@@ -30,7 +30,7 @@ export class CreateCvComponent extends RxUnsubscribe implements OnInit {
     [Controls.GENDER]: ['', [Validators.required]],
     [Controls.MATERIAL_STATUS]: [''],
     [Controls.AMOUNT_OF_CHILDREN]: [''],
-    [Controls.EMAIL]: ['', [Validators.required, Validators.email]],
+    [Controls.EMAIL]: ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
     [Controls.COMMENT]: ['', [Validators.pattern(CYRILLIC_PATTERN)]],
     [Controls.DATE_OF_BIRTH]: ['', [Validators.required]],
   });
@@ -83,6 +83,9 @@ export class CreateCvComponent extends RxUnsubscribe implements OnInit {
     } else if (this.getControl(name).hasError('email')) {
       return 'Неверный email';
     } else if (this.getControl(name).hasError('pattern')) {
+      if (name === Controls.EMAIL) {
+        return 'Неверный email';
+      }
       return 'Можно вводить только на русском языке';
     }
     return '';
